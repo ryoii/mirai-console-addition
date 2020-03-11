@@ -1,0 +1,6 @@
+name: "Console+"
+author: "ryoii"
+version: "V0.1.0"
+main: "com.github.ryoii.ConsolePlusBase"
+info: "Mirai-console的增强插件，添加若干常用的命令"
+Web: "https://github.com/ryoii/mirai-console-plus"
