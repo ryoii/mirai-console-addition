@@ -18,6 +18,7 @@ object ConsolePlusBase : PluginBase() {
 
     val mainConfig by lazy { loadConfig("main.yml") }
     val autoLoginConfig by lazy { loadConfig("auto-login.yml") }
+    val shareManagerConfig by lazy { loadConfig("share-manager.yml") }
 
     override fun onLoad() = subPlugins.forEach { it.onLoad() }
 
