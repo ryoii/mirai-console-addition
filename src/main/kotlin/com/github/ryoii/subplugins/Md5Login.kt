@@ -14,6 +14,10 @@ object Md5Login : SubPlugin {
         registerCommand {
             name = "login-md5"
             description = "使用md5作为密码登录"
+            usage = """
+                /login-md5 qq md5
+            """.trimIndent()
+
             onCommand {
                 if (this !is ConsoleCommandSender) {
                     sendMessage("请在后台使用该指令")

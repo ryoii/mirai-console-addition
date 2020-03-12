@@ -19,6 +19,11 @@ object AutoLogin : SubPlugin {
         registerCommand {
             name = "auto-login"
             description = "自动保存本次登录的qq号和密码md5值，下次启动时自动登录"
+            usage = """
+                自动保存本次登录的qq号和密码md5值，下次启动时自动登录
+                /auto-login qq password
+            """.trimIndent()
+
             onCommand {
                 if (this !is ConsoleCommandSender) {
                     sendMessage("请在后台使用该指令")
