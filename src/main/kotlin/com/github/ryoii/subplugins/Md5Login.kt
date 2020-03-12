@@ -2,10 +2,9 @@ package com.github.ryoii.subplugins
 
 import net.mamoe.mirai.Bot
 import net.mamoe.mirai.console.MiraiConsole
-import net.mamoe.mirai.console.command.Command
-import net.mamoe.mirai.console.command.CommandSender
-import net.mamoe.mirai.console.command.ConsoleCommandSender
-import net.mamoe.mirai.console.command.registerCommand
+import net.mamoe.mirai.console.command.*
+import net.mamoe.mirai.console.utils.checkManager
+import net.mamoe.mirai.event.subscribeMessages
 import net.mamoe.mirai.utils.FileBasedDeviceInfo
 import net.mamoe.mirai.utils.SimpleLogger
 
@@ -53,16 +52,16 @@ object Md5Login : SubPlugin {
                         }
                     }
                     bot.login()
-//                    bot.subscribeMessages {
-//                        startsWith("/") { message ->
-//                            if (bot.checkManager(this.sender.id)) {
-//                                val sender = ContactCommandSender(this.subject)
-//                                MiraiConsole.CommandProcessor.runCommand(
-//                                    sender, message
-//                                )
-//                            }
-//                        }
-//                    }
+                    bot.subscribeMessages {
+                        startsWith("/") { message ->
+                            if (bot.checkManager(this.sender.id)) {
+                                val sender = ContactCommandSender(this.subject)
+                                MiraiConsole.CommandProcessor.runCommand(
+                                    sender, message
+                                )
+                            }
+                        }
+                    }
                     sendMessage("$qqNumber login successes")
                     MiraiConsole.frontEnd.pushBot(bot)
                 } catch (e: Exception) {
