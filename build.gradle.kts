@@ -14,7 +14,7 @@ repositories {
 dependencies {
     compileOnly(kotlin("stdlib-jdk8"))
     compileOnly("net.mamoe:mirai-core-jvm:0.27.0")
-    compileOnly("net.mamoe:mirai-console:0.3.3")
+    compileOnly("net.mamoe:mirai-console:0.3.4")
 }
 
 java {
