@@ -17,7 +17,7 @@ object Md5Login : SubPlugin {
     override fun onLoad() {
         registerCommand {
             name = "login-md5"
-            description = "[Console+]使用md5作为密码登录"
+            description = "[console addition]使用md5作为密码登录"
             usage = """
                 /login-md5 qq md5
             """.trimIndent()

@@ -1,2 +1,2 @@
-rootProject.name = "mirai-console-plus"
+rootProject.name = "mirai-console-addition"
 

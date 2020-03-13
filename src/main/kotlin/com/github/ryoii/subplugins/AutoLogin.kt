@@ -1,6 +1,6 @@
 package com.github.ryoii.subplugins
 
-import com.github.ryoii.ConsolePlusBase
+import com.github.ryoii.ConsoleAdditionBase
 import kotlinx.coroutines.launch
 import net.mamoe.mirai.console.MiraiConsole
 import net.mamoe.mirai.console.command.Command
@@ -21,7 +21,7 @@ object AutoLogin : SubPlugin {
     override fun onLoad() {
         registerCommand {
             name = "auto-login"
-            description = "[Console+]自动保存本次登录的qq号和密码md5值，下次启动时自动登录"
+            description = "[console addition]自动保存本次登录的qq号和密码md5值，下次启动时自动登录"
             usage = """
                 自动保存本次登录的qq号和密码md5值，下次启动时自动登录
                 /auto-login qq password
@@ -40,19 +40,19 @@ object AutoLogin : SubPlugin {
                 try {
                     val qq = it[0].toLong()
                     val pwd = it[1]
-                    ConsolePlusBase.launch {
+                    ConsoleAdditionBase.launch {
                         MiraiConsole.CommandProcessor.runConsoleCommand("/login $qq $pwd")
                         bots[qq] = ""
                     }
                     true
                 } catch (e: Exception) {
-                    ConsolePlusBase.logger.error("请输入正确格式的QQ号和密码")
+                    ConsoleAdditionBase.logger.error("请输入正确格式的QQ号和密码")
                     false
                 }
             }
         }
 
-        val setting = ConsolePlusBase.autoLoginConfig
+        val setting = ConsoleAdditionBase.autoLoginConfig
         val conf = if (setting.exist("bots")) {
             setting.getConfigSection("bots")
         } else {
@@ -60,24 +60,24 @@ object AutoLogin : SubPlugin {
         }
 
         conf.keys.forEach {
-            ConsolePlusBase.logger.info(it)
+            ConsoleAdditionBase.logger.info(it)
             bots[it.toLong()] = conf.getConfigSection(it).getString("md5")
         }
 
-        ConsolePlusBase.logger.info("读取了${bots.size}个bot信息")
+        ConsoleAdditionBase.logger.info("读取了${bots.size}个bot信息")
     }
 
     override fun onEnable() {
         bots.forEach { (qq, md5) ->
-            ConsolePlusBase.logger.info("正在自动登录$qq")
-            ConsolePlusBase.launch {
+            ConsoleAdditionBase.logger.info("正在自动登录$qq")
+            ConsoleAdditionBase.launch {
                 MiraiConsole.CommandProcessor.runConsoleCommand("/login-md5 $qq $md5")
             }
         }
     }
 
     override fun onDisable() {
-        val botsSection = ConsolePlusBase.autoLoginConfig.getConfigSection("bots")
+        val botsSection = ConsoleAdditionBase.autoLoginConfig.getConfigSection("bots")
 
         bots.forEach { (qq, md5) ->
             if (md5.isNotEmpty()) {
@@ -87,13 +87,13 @@ object AutoLogin : SubPlugin {
             }
         }
 
-        ConsolePlusBase.autoLoginConfig.save()
+        ConsoleAdditionBase.autoLoginConfig.save()
     }
 
     override fun onCommand(command: Command, sender: CommandSender, args: List<String>) {
         if (command.name == "login" && bots.containsKey(args[0].toLong())) {
             bots[args[0].toLong()] = MiraiPlatformUtils.md5(args[1]).toUHexString("")
-            ConsolePlusBase.logger.info("${args[0]}自动登录成功")
+            ConsoleAdditionBase.logger.info("${args[0]}自动登录成功")
         }
     }
 }

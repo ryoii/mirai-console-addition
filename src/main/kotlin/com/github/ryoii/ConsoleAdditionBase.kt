@@ -10,7 +10,7 @@ import net.mamoe.mirai.console.command.Command
 import net.mamoe.mirai.console.command.CommandSender
 import net.mamoe.mirai.console.plugins.PluginBase
 
-object ConsolePlusBase : PluginBase() {
+object ConsoleAdditionBase : PluginBase() {
 
     private val subPlugins = listOf(
         Md5Login,

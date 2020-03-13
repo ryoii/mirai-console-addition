@@ -1,6 +1,6 @@
 package com.github.ryoii.subplugins
 
-import com.github.ryoii.ConsolePlusBase
+import com.github.ryoii.ConsoleAdditionBase
 import net.mamoe.mirai.Bot
 import net.mamoe.mirai.console.command.Command
 import net.mamoe.mirai.console.command.CommandSender
@@ -18,7 +18,7 @@ object ShareManager : SubPlugin {
     private lateinit var managers: MutableList<Long>
 
     override fun onLoad() {
-        config = ConsolePlusBase.shareManagerConfig
+        config = ConsoleAdditionBase.shareManagerConfig
 
         managers = if (config.exist("managers")) {
             config.getStringList("managers").mapNotNull { it.toLongOrNull() } as MutableList<Long>

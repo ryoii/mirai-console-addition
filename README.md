@@ -15,7 +15,7 @@ Mirai 是一个在全平台下运行，提供 QQ Android 和 TIM PC 协议支持
 图标以及形象由画师<a href = "">DazeCake</a>绘制
 </div>
 
-# mirai-console-plus
+# mirai-console-addition
 mirai-console的扩展插件，提供对console功能的增强
 
 ### 其他插件开发与获取
@@ -24,7 +24,7 @@ mirai-console的扩展插件，提供对console功能的增强
 
 ### 使用
 
-将该插件放入`plugins`目录下，并修改`plugins/Console+`目录下的配置文件
+将该插件放入`plugins`目录下，并修改`plugins/ConsoleAddition`目录下的配置文件
 
 ### 功能一览
 
@@ -40,7 +40,7 @@ mirai-console的扩展插件，提供对console功能的增强
 
 ### 全局配置
 ```yaml
-## plugin/Console+/main.yml
+## plugin/ConsoleAddition/main.yml
 auto-login: true
 md5-login: true
 share-manager: true
@@ -52,7 +52,7 @@ share-manager: true
 
 ### md5密码登录
 
-`Console+`提供了新的Command进行md5登录
+`Console Addition`提供了新的Command进行md5登录
 
 ```
 /login-md5 qq md5
@@ -64,17 +64,17 @@ share-manager: true
 
 ### 自动登录
 
-`Console+`提供了新的Command进行自动保存密码，并在下次启动时，对于保存密码的账号进行自动登录
+`Console Addition`提供了新的Command进行自动保存密码，并在下次启动时，对于保存密码的账号进行自动登录
 
 ```
 /auto-login qq password
 ```
 
 > 为保留正常登录（不保存密码）的模式，自动登录采用了新的命令作为入口。
-> 自动登录保存的是用户的md5密码，保存在plugin/Console+/auto-login.yml内
+> 自动登录保存的是用户的md5密码，保存在plugin/ConsoleAddition/auto-login.yml内
 
 ```yaml
-## plugin/Console+/auto-login.yml
+## plugin/ConsoleAddition/auto-login.yml
 
 bots:
   '123456789':
@@ -95,7 +95,7 @@ bots:
 `管理员共享`则将所有登录的bot进行管理员同步。
 
 ```yaml
-## share-manager.yml
+## plugins/ConsoleAddition/share-manager.yml
 
 managers:
 - 142857
@@ -104,7 +104,7 @@ managers:
 
 ```
 
-> 可在plugins/Console+/share-manager.yml中手动添加管理员。
+> 可在plugins/ConsoleAddition/share-manager.yml中手动添加管理员。
 > 也可以在运行过程中通过/manager命令添加管理员。
 > 管理员将会被保存在share-manager.yml文件中，下次启动时自动同步
 
@@ -114,7 +114,7 @@ managers:
 
 #### 开发该插件的目的
 
-[Console+][Console+]是对[Mirai-Console][Mirai-Console]功能的扩展，方便插件开发者和使用者。
+[Console-Addition][Console-Addition]是对[Mirai-Console][Mirai-Console]功能的扩展，方便插件开发者和使用者。
 同时该项目可以作为一个插件开发的例子，供想要对`Mirai`贡献插件的开发者参考。
 
 
@@ -125,11 +125,11 @@ managers:
 
 #### 某某功能会被移除吗
 
-随着[Mirai-core][Mirai-core]和[Mirai-Console][Mirai-Console]的完善，[Console+][Console+]的功能会逐步被取代。
+随着[Mirai-core][Mirai-core]和[Mirai-Console][Mirai-Console]的完善，[Console-Addition][Console-Addition]的功能会逐步被取代。
 
 
 
-[Console+]: https://github.com/ryoii/mirai-console-plus
+[Console-Addition]: https://github.com/ryoii/mirai-console-addition
 [Mirai-core]: https://github.com/mamoe/mirai
 [Mirai-Console]: https://github.com/mamoe/mirai-console
-[Issue]: https://github.com/ryoii/mirai-console-plus/issues
+[Issue]: https://github.com/ryoii/mirai-console-addition/issues
