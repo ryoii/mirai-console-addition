@@ -11,6 +11,9 @@ import net.mamoe.mirai.console.utils.removeManager
 
 object ShareManager : SubPlugin {
 
+    override val name = "share-manager"
+    override var on = false
+
     private lateinit var config: Config
     private lateinit var managers: MutableList<Long>
 

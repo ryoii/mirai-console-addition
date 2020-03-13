@@ -13,6 +13,9 @@ import net.mamoe.mirai.utils.io.toUHexString
 
 object AutoLogin : SubPlugin {
 
+    override val name = "auto-login"
+    override var on = false
+
     private val bots = mutableMapOf<Long, String>()
 
     override fun onLoad() {
@@ -57,7 +60,8 @@ object AutoLogin : SubPlugin {
         }
 
         conf.keys.forEach {
-            bots[it.toLong()] = conf.getConfigSection(it).getString("pwd")
+            ConsolePlusBase.logger.info(it)
+            bots[it.toLong()] = conf.getConfigSection(it).getString("md5")
         }
 
         ConsolePlusBase.logger.info("读取了${bots.size}个bot信息")

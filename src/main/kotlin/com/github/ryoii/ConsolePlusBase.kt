@@ -22,18 +22,39 @@ object ConsolePlusBase : PluginBase() {
     val autoLoginConfig by lazy { loadConfig("auto-login.yml") }
     val shareManagerConfig by lazy { loadConfig("share-manager.yml") }
 
-    override fun onLoad() = subPlugins.forEach { it.onLoad() }
+    override fun onLoad() {
+        subPlugins.forEach {
+            if (!mainConfig.exist(it.name) || mainConfig.getBoolean(it.name))  {
+                it.on = true
+                it.onLoad()
+            }
+        }
+    }
 
     @LowLevelAPI
     override fun onEnable() {
-        subPlugins.forEach { it.onEnable() }
+        subPlugins.forEach {
+            if (it.on) {
+                it.onEnable()
+            }
+        }
     }
 
     override fun onDisable() {
-        subPlugins.forEach { it.onDisable() }
+        subPlugins.forEach {
+            if (it.on) {
+                it.onDisable()
+            }
+            mainConfig[it.name] = it.on
+        }
+        mainConfig.save()
     }
 
     override fun onCommand(command: Command, sender: CommandSender, args: List<String>) =
-        subPlugins.forEach { it.onCommand(command, sender, args) }
+        subPlugins.forEach {
+            if (it.on) {
+                it.onCommand(command, sender, args)
+            }
+        }
 
 }

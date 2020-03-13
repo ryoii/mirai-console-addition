@@ -5,6 +5,9 @@ import net.mamoe.mirai.console.command.CommandSender
 
 interface SubPlugin {
 
+    val name: String
+    var on: Boolean
+
     fun onLoad()
 
     fun onEnable()

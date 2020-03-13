@@ -7,8 +7,12 @@ import net.mamoe.mirai.console.utils.checkManager
 import net.mamoe.mirai.event.subscribeMessages
 import net.mamoe.mirai.utils.FileBasedDeviceInfo
 import net.mamoe.mirai.utils.SimpleLogger
+import net.mamoe.mirai.utils.io.chunkedHexToBytes
 
 object Md5Login : SubPlugin {
+
+    override val name = "md5-login"
+    override var on = false
 
     override fun onLoad() {
         registerCommand {
