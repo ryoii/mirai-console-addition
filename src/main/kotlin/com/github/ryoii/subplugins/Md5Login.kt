@@ -37,7 +37,7 @@ object Md5Login : SubPlugin {
                 MiraiConsole.logger("[Bot Login]", 0, "login...")
                 try {
                     MiraiConsole.frontEnd.prePushBot(qqNumber)
-                    val bot = Bot(qqNumber, md5.toByteArray()) {
+                    val bot = Bot(qqNumber, md5.chunkedHexToBytes()) {
                         +FileBasedDeviceInfo
                         this.loginSolver = MiraiConsole.frontEnd.createLoginSolver()
                         this.botLoggerSupplier = {
