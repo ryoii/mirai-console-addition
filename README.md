@@ -30,28 +30,12 @@ mirai-console的扩展插件，提供对console功能的增强
 
 + [x] [MD5密码登录](#md5密码登录)
 + [x] [保存MD5密码，并自动登录](#自动登录)
-+ [ ] [多账号登录时管理员共享](#管理员共享)
++ [x] [多账号登录时管理员共享](#管理员共享)
 + [ ] 简易定时任务
 + [ ] 更好的验证码输入方式
 + [ ] Bot智能重启
 + [ ] [欢迎讨论和贡献代码][Issue]
 
-### FAQ.
-
-#### 开发该插件的目的
-
-[Console+][Console+]是对[Mirai-Console][Mirai-Console]功能的扩展，方便插件开发者和使用者。
-同时该项目可以作为一个插件开发的例子，供想要对`Mirai`贡献插件的开发者参考。
-
-
-#### 为什么没有某某某功能
-
-这里，并不实现复杂的逻辑功能。只针对日常开发测试和使用中，能够方便开发者和使用者的功能，进行补充。
-如您需要高定制化的功能，可以寻找其他插件，或在[Issue][Issue]中进行讨论。
-
-#### 某某功能会被移除吗
-
-随着[Mirai-core][Mirai-core]和[Mirai-Console][Mirai-Console]的完善，[Console+][Console+]的功能会逐步被取代。
 
 
 ### md5密码登录
@@ -92,7 +76,43 @@ bots:
 
 ### 管理员共享
 
-> 施工中
+管理员是bot的可执行账户。处理可以在console的终端输入命令外，console还支持在群聊、私聊中监听命令。但命令的发送者账号必须具有bot的管理员权限。
+通过`manager add [botId] [manageId]`为bot添加管理员，详情查看`/manager`命令。
+大多数插件可通过`manager`进行鉴权，但管理员账户时根据单个bot进行配置的。
+`管理员共享`则将所有登录的bot进行管理员同步。
+
+```yaml
+## share-manager.yml
+
+managers:
+- 142857
+- 428571
+- 285714
+
+```
+
+> 可在plugins/Console+/share-manager.yml中手动添加管理员。
+> 也可以在运行过程中通过/manager命令添加管理员。
+> 管理员将会被保存在share-manager.yml文件中，下次启动时自动同步
+
+
+
+### FAQ.
+
+#### 开发该插件的目的
+
+[Console+][Console+]是对[Mirai-Console][Mirai-Console]功能的扩展，方便插件开发者和使用者。
+同时该项目可以作为一个插件开发的例子，供想要对`Mirai`贡献插件的开发者参考。
+
+
+#### 为什么没有某某某功能
+
+这里，并不实现复杂的逻辑功能。只针对日常开发测试和使用中，能够方便开发者和使用者的功能，进行补充。
+如您需要高定制化的功能，可以寻找其他插件，或在[Issue][Issue]中进行讨论。
+
+#### 某某功能会被移除吗
+
+随着[Mirai-core][Mirai-core]和[Mirai-Console][Mirai-Console]的完善，[Console+][Console+]的功能会逐步被取代。
 
 
 
