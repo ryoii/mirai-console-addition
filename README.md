@@ -38,6 +38,18 @@ mirai-console的扩展插件，提供对console功能的增强
 
 
 
+### 全局配置
+```yaml
+## plugin/Console+/main.yml
+auto-login: true
+md5-login: true
+share-manager: true
+
+```
+
+> 设置为false关闭指定子功能
+
+
 ### md5密码登录
 
 `Console+`提供了新的Command进行md5登录
@@ -70,6 +82,7 @@ bots:
 
   '987654321':
     md5: B6BFAFDA4BA9CCED6846839C6D7B2AD6
+
 ```
 
 > 该文件保存自动登录的信息，不建议手动修改
