@@ -4,6 +4,7 @@ package com.github.ryoii
 
 import com.github.ryoii.subplugins.AutoLogin
 import com.github.ryoii.subplugins.Md5Login
+import com.github.ryoii.subplugins.ShareManager
 import net.mamoe.mirai.LowLevelAPI
 import net.mamoe.mirai.console.command.Command
 import net.mamoe.mirai.console.command.CommandSender
@@ -13,7 +14,8 @@ object ConsolePlusBase : PluginBase() {
 
     private val subPlugins = listOf(
         Md5Login,
-        AutoLogin
+        AutoLogin,
+        ShareManager
     )
 
     val mainConfig by lazy { loadConfig("main.yml") }

@@ -19,10 +19,14 @@ object ShareManager : SubPlugin {
 
         managers = if (config.exist("managers")) {
             config.getStringList("managers").mapNotNull { it.toLongOrNull() } as MutableList<Long>
-        } else { mutableListOf() }
+        } else {
+            mutableListOf()
+        }
     }
 
     override fun onEnable() {
+
+        // auto-login bots sync
         Bot.forEachInstance {
             for (m in managers) {
                 it.addManager(m)
@@ -56,6 +60,10 @@ object ShareManager : SubPlugin {
                     }
                     managers.remove(managerId)
                 }
+            }
+        } else if (command.name == "login" || command.name == "login-md5") {
+            managers.forEach {
+                Bot.getInstance(args[0].toLong()).addManager(it)
             }
         }
     }
