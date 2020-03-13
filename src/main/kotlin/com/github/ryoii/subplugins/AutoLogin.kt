@@ -18,7 +18,7 @@ object AutoLogin : SubPlugin {
     override fun onLoad() {
         registerCommand {
             name = "auto-login"
-            description = "自动保存本次登录的qq号和密码md5值，下次启动时自动登录"
+            description = "[Console+]自动保存本次登录的qq号和密码md5值，下次启动时自动登录"
             usage = """
                 自动保存本次登录的qq号和密码md5值，下次启动时自动登录
                 /auto-login qq password
