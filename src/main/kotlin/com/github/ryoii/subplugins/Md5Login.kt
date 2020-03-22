@@ -45,14 +45,14 @@ object Md5Login : SubPlugin {
                             SimpleLogger("[BOT $qqNumber]") { _, message, e ->
                                 ConsoleAdditionBase.logger.info("[BOT $qqNumber] $message")
                                 if (e != null) {
-                                    ConsoleAdditionBase.logger.info("[BOT $qqNumber] $e")
+                                    ConsoleAdditionBase.logger.info("[BOT ERROR $qqNumber] $e")
                                     e.printStackTrace()
                                 }
                             }
                         }
                         this.networkLoggerSupplier = {
                             SimpleLogger("BOT $qqNumber") { _, message, e ->
-                                ConsoleAdditionBase.logger.info("[NETWORK ERROR] $message")
+                                ConsoleAdditionBase.logger.info("[NETWORK] $message")
                                 if (e != null) {
                                     ConsoleAdditionBase.logger.info("[NETWORK ERROR] $e")
                                     e.printStackTrace()
