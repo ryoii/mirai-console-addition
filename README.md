@@ -58,7 +58,7 @@ share-manager: true
 /login-md5 qq md5
 ```
 
-> md5密码为32为md5。
+> md5密码为32位md5。
 > md5密码是QQ的登录方式，相对于明文密码较安全。
 > 但md5密码的丢失，依旧会导致QQ被他人登录。
 
