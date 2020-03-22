@@ -1,6 +1,6 @@
 name: "ConsoleAddition"
 author: "ryoii"
-version: "V0.1.0"
+version: "V0.2.0"
 main: "com.github.ryoii.ConsoleAdditionBase"
 info: "Mirai-console的增强插件，添加若干常用的命令"
 Web: "https://github.com/ryoii/mirai-console-addition"

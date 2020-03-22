@@ -1,5 +1,6 @@
 package com.github.ryoii.subplugins
 
+import com.github.ryoii.ConsoleAdditionBase
 import net.mamoe.mirai.Bot
 import net.mamoe.mirai.console.MiraiConsole
 import net.mamoe.mirai.console.command.*
@@ -15,7 +16,7 @@ object Md5Login : SubPlugin {
     override var on = false
 
     override fun onLoad() {
-        registerCommand {
+        ConsoleAdditionBase.registerCommand {
             name = "login-md5"
             description = "[console addition]使用md5作为密码登录"
             usage = """
@@ -28,13 +29,13 @@ object Md5Login : SubPlugin {
                     return@onCommand false
                 }
                 if (it.size < 2) {
-                    MiraiConsole.logger("\"/login-md5 qq md5 \" to login a bot")
-                    MiraiConsole.logger("\"/login-md5 qq号 qq密码md5 \" 来登录一个BOT")
+                    ConsoleAdditionBase.logger.info("\"/login-md5 qq md5 \" to login a bot")
+                    ConsoleAdditionBase.logger.info("\"/login-md5 qq号 qq密码md5 \" 来登录一个BOT")
                     return@onCommand false
                 }
                 val qqNumber = it[0].toLong()
                 val md5 = it[1]
-                MiraiConsole.logger("[Bot Login]", 0, "login...")
+                ConsoleAdditionBase.logger.info("[Bot md5 Login] login...")
                 try {
                     MiraiConsole.frontEnd.prePushBot(qqNumber)
                     val bot = Bot(qqNumber, md5.chunkedHexToBytes()) {
@@ -42,18 +43,18 @@ object Md5Login : SubPlugin {
                         this.loginSolver = MiraiConsole.frontEnd.createLoginSolver()
                         this.botLoggerSupplier = {
                             SimpleLogger("[BOT $qqNumber]") { _, message, e ->
-                                MiraiConsole.logger("[BOT $qqNumber]", qqNumber, message)
+                                ConsoleAdditionBase.logger.info("[BOT $qqNumber] $message")
                                 if (e != null) {
-                                    MiraiConsole.logger("[NETWORK ERROR]", qqNumber, e.toString())//因为在一页 所以可以不打QQ
+                                    ConsoleAdditionBase.logger.info("[BOT $qqNumber] $e")
                                     e.printStackTrace()
                                 }
                             }
                         }
                         this.networkLoggerSupplier = {
                             SimpleLogger("BOT $qqNumber") { _, message, e ->
-                                MiraiConsole.logger("[NETWORK]", qqNumber, message)//因为在一页 所以可以不打QQ
+                                ConsoleAdditionBase.logger.info("[NETWORK ERROR] $message")
                                 if (e != null) {
-                                    MiraiConsole.logger("[NETWORK ERROR]", qqNumber, e.toString())//因为在一页 所以可以不打QQ
+                                    ConsoleAdditionBase.logger.info("[NETWORK ERROR] $e")
                                     e.printStackTrace()
                                 }
                             }
@@ -64,7 +65,7 @@ object Md5Login : SubPlugin {
                         startsWith("/") { message ->
                             if (bot.checkManager(this.sender.id)) {
                                 val sender = ContactCommandSender(this.subject)
-                                MiraiConsole.CommandProcessor.runCommand(
+                                CommandManager.runCommand(
                                     sender, message
                                 )
                             }

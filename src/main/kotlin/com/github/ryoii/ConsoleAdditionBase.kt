@@ -8,6 +8,8 @@ import com.github.ryoii.subplugins.ShareManager
 import net.mamoe.mirai.LowLevelAPI
 import net.mamoe.mirai.console.command.Command
 import net.mamoe.mirai.console.command.CommandSender
+import net.mamoe.mirai.console.command.ConsoleCommandSender
+import net.mamoe.mirai.console.command.runCommandAsync
 import net.mamoe.mirai.console.plugins.PluginBase
 
 object ConsoleAdditionBase : PluginBase() {
@@ -57,4 +59,6 @@ object ConsoleAdditionBase : PluginBase() {
             }
         }
 
+    internal fun runCommand(command: String)
+            = runCommandAsync(ConsoleCommandSender, command)
 }

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.ryoii"
-version = "V0.1.0"
+version = "V0.2.0"
 
 repositories {
     maven { setUrl("https://mirrors.huaweicloud.com/repository/maven") }
@@ -13,8 +13,8 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib-jdk8"))
-    compileOnly("net.mamoe:mirai-core-jvm:0.27.0")
-    compileOnly("net.mamoe:mirai-console:0.3.4")
+    compileOnly("net.mamoe:mirai-core-jvm:0.29.0")
+    compileOnly("net.mamoe:mirai-console:0.3.5")
 }
 
 java {
