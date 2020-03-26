@@ -1,7 +1,5 @@
 package com.github.ryoii
 
-
-
 import com.github.ryoii.subplugins.AutoLogin
 import com.github.ryoii.subplugins.Md5Login
 import com.github.ryoii.subplugins.ShareManager

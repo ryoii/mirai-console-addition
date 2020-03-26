@@ -1,20 +1,21 @@
 plugins {
-    kotlin("jvm") version "1.3.70"
+    kotlin("jvm") version "1.4-M1"
     java
 }
 
 group = "com.github.ryoii"
-version = "V0.2.0"
+version = "V0.2.1"
 
 repositories {
+    maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
     maven { setUrl("https://mirrors.huaweicloud.com/repository/maven") }
     jcenter()
 }
 
 dependencies {
-    compileOnly(kotlin("stdlib-jdk8"))
-    compileOnly("net.mamoe:mirai-core-jvm:0.30.0")
-    compileOnly("net.mamoe:mirai-console:0.3.5")
+    compileOnly(kotlin("stdlib-jdk8", "1.4-M1"))
+    compileOnly("net.mamoe:mirai-core-jvm:0.30.1")
+    compileOnly("net.mamoe:mirai-console:0.3.7")
 }
 
 java {
