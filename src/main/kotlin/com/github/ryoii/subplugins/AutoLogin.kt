@@ -1,3 +1,5 @@
+@file:Suppress("EXPERIMENTAL_API_USAGE")
+
 package com.github.ryoii.subplugins
 
 import com.github.ryoii.ConsoleAdditionBase
@@ -8,8 +10,7 @@ import net.mamoe.mirai.console.command.CommandSender
 import net.mamoe.mirai.console.command.ConsoleCommandSender
 import net.mamoe.mirai.console.command.registerCommand
 import net.mamoe.mirai.console.plugins.ConfigSectionImpl
-import net.mamoe.mirai.utils.MiraiPlatformUtils
-import net.mamoe.mirai.utils.io.toUHexString
+import java.security.MessageDigest
 
 object AutoLogin : SubPlugin {
 
@@ -98,7 +99,26 @@ object AutoLogin : SubPlugin {
 
     override fun onCommand(command: Command, sender: CommandSender, args: List<String>) {
         if (command.name == "login" && bots.containsKey(args[0].toLong())) {
-            bots[args[0].toLong()] = MiraiPlatformUtils.md5(args[1]).toUHexString("")
+            bots[args[0].toLong()] = MessageDigest.getInstance("MD5").apply { update(args[1].toByteArray()) }.digest().toUHexString("")
+        }
+    }
+}
+
+@JvmOverloads
+@Suppress("DuplicatedCode") // false positive. foreach is not common to UByteArray and ByteArray
+internal fun ByteArray.toUHexString(separator: String = " ", offset: Int = 0, length: Int = this.size - offset): String {
+    if (length == 0) {
+        return ""
+    }
+    val lastIndex = offset + length
+    return buildString(length * 2) {
+        this@toUHexString.forEachIndexed { index, it ->
+            if (index in offset until lastIndex) {
+                var ret = it.toUByte().toString(16).toUpperCase()
+                if (ret.length == 1) ret = "0$ret"
+                append(ret)
+                if (index < lastIndex - 1) append(separator)
+            }
         }
     }
 }

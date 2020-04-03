@@ -1,3 +1,5 @@
+@file:Suppress("EXPERIMENTAL_API_USAGE")
+
 package com.github.ryoii.subplugins
 
 import com.github.ryoii.ConsoleAdditionBase
@@ -6,9 +8,7 @@ import net.mamoe.mirai.console.MiraiConsole
 import net.mamoe.mirai.console.command.*
 import net.mamoe.mirai.console.utils.checkManager
 import net.mamoe.mirai.event.subscribeMessages
-import net.mamoe.mirai.utils.FileBasedDeviceInfo
 import net.mamoe.mirai.utils.SimpleLogger
-import net.mamoe.mirai.utils.io.chunkedHexToBytes
 
 object Md5Login : SubPlugin {
 
@@ -39,7 +39,7 @@ object Md5Login : SubPlugin {
                 try {
                     MiraiConsole.frontEnd.prePushBot(qqNumber)
                     val bot = Bot(qqNumber, md5.chunkedHexToBytes()) {
-                        +FileBasedDeviceInfo
+                        fileBasedDeviceInfo()
                         this.loginSolver = MiraiConsole.frontEnd.createLoginSolver()
                         this.botLoggerSupplier = {
                             SimpleLogger("[BOT $qqNumber]") { _, message, e ->
@@ -85,3 +85,6 @@ object Md5Login : SubPlugin {
     override fun onDisable() {}
     override fun onCommand(command: Command, sender: CommandSender, args: List<String>) {}
 }
+
+internal fun String.chunkedHexToBytes(): ByteArray =
+    this.asSequence().chunked(2).map { (it[0].toString() + it[1]).toUByte(16).toByte() }.toList().toByteArray()
