@@ -5,6 +5,7 @@ package com.github.ryoii.subplugins
 import com.github.ryoii.ConsoleAdditionBase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.mamoe.mirai.Bot
 import net.mamoe.mirai.console.command.Command
 import net.mamoe.mirai.console.command.CommandSender
 import net.mamoe.mirai.console.command.ConsoleCommandSender
@@ -71,6 +72,11 @@ object AutoLogin : SubPlugin {
 
     override fun onEnable() {
         bots.forEach { (qq, md5) ->
+
+            for (bot in Bot.instances) {
+                if (bot.get()?.id == qq) return@forEach
+            }
+
             ConsoleAdditionBase.logger.info("正在自动登录$qq")
             ConsoleAdditionBase.launch {
                 val success = ConsoleAdditionBase.runCommand("/login-md5 $qq $md5")

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.ryoii"
-version = "V0.2.2"
+version = "V0.2.3"
 
 repositories {
     maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     compileOnly(kotlin("stdlib-jdk8", "1.3.71"))
-    compileOnly("net.mamoe:mirai-core-jvm:0.32.0")
+    compileOnly("net.mamoe:mirai-core-jvm:0.33.0")
     compileOnly("net.mamoe:mirai-console:0.4.2")
 }
 
