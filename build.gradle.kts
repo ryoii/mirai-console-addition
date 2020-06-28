@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.ryoii"
-version = "V0.2.3"
+version = "V0.3.0-pre"
 
 repositories {
     maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
