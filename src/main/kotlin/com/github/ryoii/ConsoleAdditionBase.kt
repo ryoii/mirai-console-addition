@@ -14,8 +14,8 @@ object ConsoleAdditionBase : PluginBase() {
 
     private val subPlugins = listOf(
         Md5Login,
-        AutoLogin,
-        ShareManager
+        AutoLogin
+//        ShareManager
     )
 
     val mainConfig by lazy { loadConfig("main.yml") }
@@ -57,6 +57,6 @@ object ConsoleAdditionBase : PluginBase() {
             }
         }
 
-    internal fun runCommand(command: String)
+    internal fun runCommandAsync(command: String)
             = runCommandAsync(ConsoleCommandSender, command)
 }

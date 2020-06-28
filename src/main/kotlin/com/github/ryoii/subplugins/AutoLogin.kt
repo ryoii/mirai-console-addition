@@ -45,7 +45,7 @@ object AutoLogin : SubPlugin {
                     val pwd = it[1]
                     withContext(ConsoleAdditionBase.coroutineContext) {
                         bots[qq] = ""
-                        ConsoleAdditionBase.runCommand("/login $qq $pwd").await()
+                        ConsoleAdditionBase.runCommandAsync("/login $qq $pwd").await()
                     }
 
                 } catch (e: Exception) {
@@ -73,13 +73,13 @@ object AutoLogin : SubPlugin {
     override fun onEnable() {
         bots.forEach { (qq, md5) ->
 
-            for (bot in Bot.instances) {
-                if (bot.get()?.id == qq) return@forEach
+            for (bot in Bot.botInstances) {
+                if (bot.id == qq) return@forEach
             }
 
             ConsoleAdditionBase.logger.info("正在自动登录$qq")
             ConsoleAdditionBase.launch {
-                val success = ConsoleAdditionBase.runCommand("/login-md5 $qq $md5")
+                val success = ConsoleAdditionBase.runCommandAsync("/login-md5 $qq $md5")
                 if (success.await()) {
                     ConsoleAdditionBase.logger.info("$qq 自动登录成功")
                 } else {

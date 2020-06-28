@@ -64,7 +64,7 @@ object Md5Login : SubPlugin {
                     bot.subscribeMessages {
                         startsWith("/") { message ->
                             if (bot.checkManager(this.sender.id)) {
-                                val sender = ContactCommandSender(this.subject)
+                                val sender = ContactCommandSender(bot, this.subject)
                                 CommandManager.runCommand(
                                     sender, message
                                 )
